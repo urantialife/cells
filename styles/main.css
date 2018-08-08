@@ -1,0 +1,203 @@
+
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+    font-family: "Muli", sans-serif;
+    --primary: #9369fa;
+}
+
+h1,
+h2,
+strong {
+  color: #222;
+}
+
+h2 {
+  margin-top: 2em;
+  padding-top: 1em;
+}
+
+a, .link {
+	text-decoration: underline;
+	color: var(--primary);
+}
+
+header, footer {
+    padding: 6vw 2em;
+    text-align: center;
+    background-color: var(--primary);
+    color: #fff;
+}
+
+header h1 {
+    font-size: 40px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+header a, footer a {
+    color: #fff;
+}
+
+header .credit {
+    opacity: 0.5;
+    font-size: 15px;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 55em;
+    line-height: 1.5;
+    padding: 2em 2em;
+}
+
+ol {
+  margin: 50px 0px;
+  padding: 0;
+  list-style-type: none;
+}
+
+ol li {
+  counter-increment: step-counter;
+  margin-bottom: 10px;
+}
+
+ol li:not([data-text])::before {
+    content: counter(step-counter);
+}
+
+ol li[data-text]::before {
+    content: attr(data-text);
+}
+
+ol li::before {
+  background-color: var(--primary);
+  margin-right: 20px;
+  color: #fff;
+  font-weight: 800;
+  padding: 5px 10px;
+  width: 30px;
+  display: inline-block;
+  text-align: center;
+}
+
+input {
+    font-size: inherit;
+    font-family: inherit;
+    width: 500px;
+    border: none;
+    border-bottom: 1px solid var(--primary);
+    padding: 5px 0px;
+    outline: none;
+}
+
+.button {
+    --color: var(--primary);
+	flex-grow: 1;
+    text-align: center;
+    display: block;
+    margin: 10px 0px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--color);
+    transition: all 0.3s;
+    font-size: 25px;
+    user-select: none;
+}
+
+.button.inline {
+	display: inline-block;
+	border-radius: 0px;
+}
+
+.button:hover {
+  transform: scale(0.97);
+}
+
+.button:active {
+  background: #fff;
+  color: var(--color);
+  box-shadow: 0px 0px 10px var(--color);
+}
+
+.playable {
+    margin: 50px 0px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px #ccc;
+}
+
+.array {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    --item-gap: 10px;
+}
+
+.array *:last-child:not(:first-child){
+    margin-left: var(--item-gap);
+}
+
+.array *:first-child:not(:last-child){
+    margin-right: var(--item-gap);
+}
+
+.array *:not(:first-child):not(:last-child){
+    margin: 0px var(--item-gap);
+}
+
+.array .item {
+    flex-grow: 1;
+    background: #eee;
+    transition: all 0.3s;
+    box-shadow: 0 0 0 1px transparent;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    --color: #555;
+}
+
+.array .item:before {
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+.array .item.alive {
+    background: var(--color);
+}
+
+.array .item:hover {
+    /* Nothing anymore... */
+}
+
+.array .item.highlight {
+    box-shadow: 0 0 0 5px var(--primary);
+    z-index: 100;
+}
+
+.array-grid .item {
+    border-radius: 0px !important;
+    margin: 0px !important;
+    transition: none !important;
+}
+
+.array-grid .array .item.highlight {
+    box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.split-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+}

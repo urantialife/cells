@@ -1,0 +1,190 @@
+<html>
+
+    <head>
+        <title>From Cells to Systems</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="styles/main.css">
+
+        <script src='http://zeptojs.com/zepto.min.js'></script>
+
+        <script src='scripts/playable-1.js'></script>
+        <script src='scripts/playable-2.js'></script>
+        <script src='scripts/playable-3.js'></script>
+        <script src='scripts/playable-4.js'></script>
+        <script src='scripts/playable-5.js'></script>
+		<script src='scripts/playable-6.js'></script>
+		<script src='scripts/playable-8.js'></script>
+        <script src='scripts/playable-final.js'></script>
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1>From Cells to Systems</h1>
+            <p>An explorable explanation of cellular automata.</p>
+            <p class='credit'>Written by <a href="https://twitter.com/spaciecat">@SpacieCat</a> for <a href="https://explorabl.es">#ExplorablesJam</a> 2018.</p>
+        </header>
+
+        <main>
+
+            <p>
+                Hi there, thanks for checking out this explorable thing!
+                Right now this page is early in development, so expect missing content, bugs, and spelling mistakes~
+            </p>
+
+            <h2>[TODO] Introduction</h2>
+
+            <p>
+                Add some introductory text that introduces CAs as simulations of extremely simple universes,
+                or something like that. Make them sound cool and exciting!
+            </p>
+
+            <p>What is the simplest interesting universe we can create?</p>
+
+            <h2>The Elementary Cellular Automata</h2>
+
+            <p>
+                Our quest to create the simplest non-trivial universe simulation will follow in the footsteps of
+                Stephen Wolfram, and his work on the elementary cellular automata (I'll be referring to them from
+                now on as ECA).
+            </p>
+
+            <p>
+                A cellular automaton (<i>automata</i> is plural), is a function that takes in a set of cells on a grid,
+                and performs some simple computations to produce a new grid of cells. An ECA is a specific type of
+                cellular automata, one that only exists in one dimension, with cells that have two possible states.
+            </p>
+
+            <p>
+                Each cell in an ECA can either be dead (shown with a light background) or alive (shown with a black background and later
+                on in this article with coloured backgrounds). Here's a view of the world that our ECA exists in:
+            </p>
+
+            <div class="playable p1">
+            	<p>Interactive: Life and death</p>
+            </div>
+
+            <p>
+                Each cell's neighbours are the other cells within a certain distance.
+                Because an ECA is the most basic cellular automata, each cell only has one neighbour to each side:
+            </p>
+
+            <div class="playable p2">
+            	<p>Interactive: Neighbours</p>
+            </div>
+
+            <p>
+                Make sure you play with the above interactive a little bit to get a feel of how neighbours work,
+                especially at the edge of the simulation (if we can't see a cell we'll assume its dead).
+            </p>
+
+            <p>
+                A cell's neighbourhood is made up of the left neighbour, the cell, and the right neighbour:
+            </p>
+
+            <div class="playable p3">
+            	<p>Interactive: Neighbourhoods</p>
+            </div>
+
+            <p>
+                It's important to remember that neighbourhoods don't just impact the cell in the middle, changing a cell will
+                affect the neighbourhoods of those around it too. To get a feel for this, try and solve this little puzzle
+                (or just move on, it's up to you):
+            </p>
+
+            <div class="playable p4">
+            	<p>Interactive: neighbourhoods puzzle</p>
+            </div>
+
+            <p>
+                See? Making changes to a cell can cause others around it to change too.
+            </p>
+
+            <p>
+                Alright, now you're ready for the real deal, here's an extremely simple ECA.
+                This ECA looks for cells with a neighbourhood of ◼︎◻︎◼︎ and then outputs a live cell wherever it sees one
+                (hover over an output cell to see its neighbours in the previous generation):
+            </p>
+
+            <div class="playable p5">
+            	<p>Interactive: Single neighbourhood rule, one generation</p>
+            </div>
+
+            <p>
+                Still, this isn't super exciting... But wait! What if we fed the output through the ECA again?
+                Each pass through the ECA is called a "generation", here's the same ECA as before but with two generations this time:
+            </p>
+
+            <p>
+                Also, from now on each cell won't be shown individually, it'll either be shown as part of a generation or set of generations.
+            </p>
+
+			<div class="playable p6">
+				<p>Interactive: Single neighbourhood rule, two generations</p>
+			</div>
+
+            <p>
+                This is more interesting, and we can start to create patterns,
+                but we're only creating a living output cell when we see one specific type of neighbourhood.
+                An ECA has 8 different types of neighbourhoods, they are (in binary order):
+            </p>
+
+            <p>
+                ◻︎◻︎◻︎, ◻︎◻︎◼︎, ◻︎◼︎◻︎, ◻︎◼︎◼︎, ◼︎◻︎◻︎, ◼︎◻︎◼︎, ◼︎◼︎◻︎, ◼︎◼︎◼︎
+            </p>
+
+            <!--
+			<div class="playable p7">
+				<p>Interactive: Binary -> Neighbourhood </p>
+			</div> -->
+
+            <p>
+                Here are the first 3 generations of an ECA with switches for controlling if each neighbourhood's evolution each generation:
+            </p>
+
+            <div class="playable p8">
+            	<p>Interactive: All neighbourhoods, 1 generation</p>
+            </div>
+
+            <p>
+                The convention is that the input cells to an ECA usually contain only one living cell in the middle,
+                and that subsequent generations are stacked below it to form a grid that shows its evolution.
+            </p>
+
+            <p>
+                Here's a playground that follows the conventions and allows you to edit the rules with the buttons
+                or by clicking the cells themselves (clicking a cell will toggle the button that matches its neighbours in the previous generation):
+            </p>
+
+            <div class="playable p-final"></div>
+
+			<h2>[TODO] The Game of Life</h2>
+
+			<p>This might not be added during explorables jam but I want to add it eventually.</p>
+
+			<h2>Conclusion</h2>
+
+			<p>
+                Thank's for reading, my first explorable explanation!
+                If you have any feedback I'd love to hear it, feel free to
+                <a href="https://twitter.com/spaciecat">contact me on twitter</a> with any ideas or comments!
+            </p>
+
+            <p>I hope you learned something!</p>
+
+
+
+
+        </main>
+
+        <footer>
+            Copyright (c) 2018 SpacieCat, under the MIT open source license.
+        </footer>
+
+    </body>
+
+</html>

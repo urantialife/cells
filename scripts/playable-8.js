@@ -10,7 +10,7 @@ $(() => {
 				</div>
 				<div>
 					<p>Click to toggle input cells:<p/>
-					<div class='arrays array-grid'></div>
+					<div class='arrays'></div>
 				</div>
 			</div>
 		</p>

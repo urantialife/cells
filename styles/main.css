@@ -113,6 +113,7 @@ input {
     transition: all 0.3s;
     font-size: 25px;
     user-select: none;
+    cursor: pointer;
 }
 
 .button.inline {
@@ -164,6 +165,7 @@ input {
     border: 2px solid transparent;
     border-radius: 5px;
     --color: #555;
+    cursor: pointer;
 }
 
 .array .item:before {
@@ -177,7 +179,7 @@ input {
 }
 
 .array .item:hover {
-    /* Nothing anymore... */
+    transform: scale(0.9);
 }
 
 .array .item.highlight {
@@ -186,8 +188,8 @@ input {
 }
 
 .array-grid .item {
-    border-radius: 0px !important;
-    margin: 0px !important;
+    margin: 1px !important;
+    border-radius: 2px !important;
     transition: none !important;
 }
 
@@ -198,6 +200,6 @@ input {
 .split-container {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 250px 1fr;
     grid-gap: 30px;
 }

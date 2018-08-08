@@ -3,7 +3,7 @@
 
 $(() => {
     const source = `
-		<div class='arrays array-grid'>
+		<div class='arrays'>
 			<p> Click to edit these input cells and see subsequent generations: </p>
 		</div>
     `

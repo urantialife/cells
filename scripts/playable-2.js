@@ -28,7 +28,7 @@ $(() => {
         }
 
         for(let i = 0; i < 11; i++){
-            const item = $(`<div class="item ${Math.random() > 0.5 ? 'alive' : ''}" data-id="${i}"></div>`)
+            const item = $(`<div class="item can-click ${Math.random() > 0.5 ? 'alive' : ''}" data-id="${i}"></div>`)
             items.push(item)
 
             item.on('mouseenter', (e) => {

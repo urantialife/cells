@@ -146,7 +146,7 @@ $(() => {
 			let row = []
 			rows.push(row)
 			for(let x = 0; x < size; x++){
-				const item = $(`<div class="item"></div>`)
+				const item = $(`<div class="item can-click"></div>`)
 				if(i == 0){
 					if(x == Math.floor(size / 2)) item.addClass('alive')
 					item.on('mouseenter', () => item.addClass('highlight'))

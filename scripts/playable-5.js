@@ -44,7 +44,7 @@ $(() => {
 			let row = []
 			rows.push(row)
 			for(let x = 0; x < size; x++){
-				const item = $(`<div class="item ${Math.random() > 0.5 ? 'alive' : ''}"></div>`)
+				const item = $(`<div class="item ${i == 0 ? 'can-click' : ''} ${Math.random() > 0.5 ? 'alive' : ''}"></div>`)
 				item.on('mouseenter', () => {
 					item.addClass('highlight')
 					if(rows[i - 1] && rows[i - 1][x - 1]) rows[i - 1][x - 1].addClass('highlight')

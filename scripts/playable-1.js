@@ -11,9 +11,9 @@ $(() => {
         $(self).html(source)
 
         for(let i = 0; i < 11; i++){
-            $(self).find('.array').append(`<div class="item ${Math.random() > 0.5 ? 'alive' : ''}"></div>`)
+            $(self).find('.array').append(`<div class="item can-click ${Math.random() > 0.5 ? 'alive' : ''}"></div>`)
         }
-		
+
         $(self).find('.item').on('click', (e) => {
             $(e.target).toggleClass('alive')
         })

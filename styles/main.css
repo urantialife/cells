@@ -165,8 +165,11 @@ input {
     border-radius: 5px;
 	border: 5px solid transparent;
     --color: #555;
-    cursor: pointer;
 	--highlight: rgba(0, 0, 0, 0.5);
+}
+
+.array .item.can-click {
+	cursor: pointer;
 }
 
 .array .item:before {
@@ -191,7 +194,6 @@ input {
 .array-grid .item {
     margin: 1px !important;
     border-radius: 2px !important;
-
 }
 
 .split-container {

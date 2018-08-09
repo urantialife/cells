@@ -58,7 +58,7 @@ $(() => {
         }
 
         for(let i = 0; i < 8; i++){
-            const item = $(`<div class="item" data-id="${i}"></div>`)
+            const item = $(`<div class="item can-click" data-id="${i}"></div>`)
             items.push(item)
 
             item.on('mouseenter', (e) => {

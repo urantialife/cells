@@ -4,6 +4,10 @@
 $(() => {
     const source = `
 		<p>
+			Click the buttons to change the ECA,
+			you can also click the cells to toggle the button matching their neighbourhood in the previous generation:
+		</p>
+		<p>
 			<div class='split-container'>
 				<div>
 					<div class='button-line'></div>

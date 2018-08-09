@@ -17,18 +17,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/main.css?3">
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js'></script>
 
-        <script src='scripts/playable-1.js'></script>
+        <script src='scripts/playable-1.js?2'></script>
         <script src='scripts/playable-2.js'></script>
         <script src='scripts/playable-3.js'></script>
-        <script src='scripts/playable-4.js'></script>
+        <script src='scripts/playable-4.js?2'></script>
         <script src='scripts/playable-5.js'></script>
 		<script src='scripts/playable-6.js'></script>
 		<script src='scripts/playable-8.js'></script>
-        <script src='scripts/playable-final.js'></script>
+        <script src='scripts/playable-final.js?2'></script>
 
     </head>
 
@@ -42,28 +42,26 @@
 
         <main>
 
+			<h2>Introduction</h2>
+
             <p>
                 Hi there, thanks for checking out this explorable thing!
                 Right now this page is early in development, so expect missing content, bugs, and spelling mistakes~
                 Note: Not designed for mobile, sorry, I'm working on it.
             </p>
 
-            <h2>[TODO] Introduction</h2>
+			<h2>The Elementary Cellular Automata</h2>
 
-            <p>
-                Add some introductory text that introduces CAs as simulations of extremely simple universes,
-                or something like that. Make them sound cool and exciting!
-            </p>
-
-            <p>What is the simplest interesting universe we can create?</p>
-
-            <h2>The Elementary Cellular Automata</h2>
+			<p>So, you want to simulate a universe? Great! What is the simplest interesting universe we can create?</p>
 
             <p>
                 Our quest to create the simplest non-trivial universe simulation will follow in the footsteps of
-                Stephen Wolfram, and his work on the elementary cellular automata (I'll be referring to them from
-                now on as ECA).
+                Stephen Wolfram, and his work on the elementary cellular automata (ECA).
             </p>
+
+			<div class="playable p1">
+            	<p>Interactive: Life and death</p>
+            </div>
 
             <p>
                 A cellular automaton (<i>automata</i> is plural), is a function that takes in a set of cells on a grid,
@@ -73,34 +71,27 @@
 
             <p>
                 Each cell in an ECA can either be dead (shown with a light background) or alive (shown with a black background and later
-                on in this article with coloured backgrounds). Here's a view of the world that our ECA exists in:
+                on in this article with coloured backgrounds).
             </p>
-
-            <div class="playable p1">
-            	<p>Interactive: Life and death</p>
-            </div>
 
             <p>
                 Each cell's neighbours are the other cells within a certain distance.
-                Because an ECA is the most basic cellular automata, each cell only has one neighbour to each side:
+                Because an ECA is the most basic cellular automata, each cell only has one neighbour to each side.
+				A cell's neighbourhood is made up of the left neighbour, the cell itself, and the right neighbour:
             </p>
 
-            <div class="playable p2">
-            	<p>Interactive: Neighbours</p>
-            </div>
-
-            <p>
-                Make sure you play with the above interactive a little bit to get a feel of how neighbours work,
-                especially at the edge of the simulation (if we can't see a cell we'll assume its dead).
-            </p>
-
-            <p>
-                A cell's neighbourhood is made up of the left neighbour, the cell itself, and the right neighbour:
-            </p>
+			<!-- Removed, it was a little redundant <div class="playable p2">
+				<p>Interactive: Neighbours</p>
+			</div> -->
 
             <div class="playable p3">
             	<p>Interactive: Neighbourhoods</p>
             </div>
+
+			<p>
+                Make sure you play with the above interactive a little bit to get a feel of how neighbours and neighbourhoods work,
+                especially at the edge of the simulation (if we can't see a cell we'll assume its dead).
+            </p>
 
             <p>
                 It's important to remember that neighbourhoods don't just impact the cell in the middle, changing a cell will
@@ -145,17 +136,12 @@
                 ◻︎◻︎◻︎, ◻︎◻︎◼︎, ◻︎◼︎◻︎, ◻︎◼︎◼︎, ◼︎◻︎◻︎, ◼︎◻︎◼︎, ◼︎◼︎◻︎, ◼︎◼︎◼︎
             </p>
 
-            <!--
-			<div class="playable p7">
-				<p>Interactive: Binary -> Neighbourhood </p>
-			</div> -->
-
             <p>
                 Here are the first 3 generations of an ECA with switches that control neighbourhood evolution each generation:
             </p>
 
             <div class="playable p8">
-            	<p>Interactive: All neighbourhoods, 1 generation</p>
+            	<p>Interactive: All neighbourhoods, 3 generations</p>
             </div>
 
             <p>
@@ -170,9 +156,13 @@
 
             <div class="playable p-final"></div>
 
-			<h2>[TODO] The Game of Life</h2>
-
-			<p>This might not be added during explorables jam but I want to add it eventually.</p>
+			<p>TODO: The "systems" part!</p>
+			<ul>
+				<li>TODO: Rule numbers</li>
+				<li>TODO: Classes of ECA</li>
+				<li>TODO: Show off some cool rules</li>
+				<li>TODO: Rule 30's randomness and rule 110's turing completeness</li>
+			</ul>
 
 			<h2>Conclusion</h2>
 
@@ -182,10 +172,13 @@
                 <a href="https://twitter.com/spaciecat">contact me on twitter</a> with any ideas or comments!
             </p>
 
-            <p>I hope you learned something!</p>
+			<p>Huge thanks to the following people for their suggestions:</p>
 
-
-
+			<ul>
+				<li>Nicky case (<a href="https://twitter.com/ncasenmare">@ncasenmare</a>)</li>
+				<li>Amit Patel (<a href="https://twitter.com/redblobgames">@redblobgames</a>)</li>
+				<li>Alex Chow (<a href="https://twitter.com/axchow">@axchow</a>)</li>
+			</ul>
 
         </main>
 

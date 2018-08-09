@@ -1,121 +1,133 @@
 
-// Interactive #x - The full ECA
-// There's a mix of $ and regular DOM manipulation going on in here.
-// Using the utility methods for everything made it super slow
+// Interactive #? - Full ECA
 
 $(() => {
     const source = `
 		<p>
-			Click on the buttons or cells to edit the rule (hover cells to see their neighbourhood):
-		</p>
-        <p>
 			<div class='split-container'>
 				<div>
-					<div class="buttons"></div>
+					<div class='button-line'></div>
 				</div>
 				<div>
-					<div class='array-grid'></div>
+					<div class='arrays array-grid'></div>
 				</div>
 			</div>
 		</p>
     `
 
-    const colors = '#ee4566 #ffa938 #eee039 #39e692 #3fcbe9 #5286f9 #9369fa #f962cf'.split(' ')
+	const colors = '#ee4566 #ffa938 #eee039 #39e692 #3fcbe9 #5286f9 #9369fa #f962cf'.split(' ')
 
-    function toBinary(value, digits = 8){
+	function toBinary(value, digits = 8){
         let string = value.toString(2)
         let pad = ''
         for(let i = 0; i < digits; i++) pad += '0'
         return pad.substr(string.length) + string
     }
 
-    let size = 25
-
     $('.playable.p-final').each((i, self) => {
-        const container = self
-        let cells = {}
 
-        const getCell = (x, y) => {
-            if(cells[`${x}-${y}`]) return cells[`${x}-${y}`]
-            return null
-        }
+		$(self).html(source)
 
-        function render(){
+		const container = self, rows = []
 
-            for(const item of Object.values(cells)){
-                // TODO: Move the hover and grid clicking inside of rendering to make it update
-                item.className = 'item'
-            }
+		let size = 15
+		let hovered = null
 
-            let rule = []
+		// TODO: Use negative x values so to outter cells
 
-            $(self).find('.rule-toggle').each((i, self) => {
+		function render(){
+
+			let rule = []
+
+			$(self).find('.rule-toggle').each((i, self) => {
                 let neighbourText = toBinary(i, 3).replace(/1/g, '◼︎').replace(/0/g, '◻︎')
                 let producesLife = $(self).hasClass('active')
                 rule.push(producesLife)
-                $(self).text(`${neighbourText} ➜ ${producesLife ? '◼︎' : '◻︎'}`)
+                $(self).html(`${neighbourText} ➜ ${producesLife ? '◼︎' : '◻︎'}`)
             })
 
-            // In the horizontal loops, the x direction goes way out of the visible bounds
-            // This is to make sure that even though we might not be able to see everything, the pattern is correct
-            const generation = (gen, previous) => {
-                let data = {}
-                if(previous == null){
-                    for(let i = 0 - size; i < size * 2; i++){
-                        if(i == Math.floor(size / 2)){
-                            data[i] = 1
-                            if(getCell(i, gen)){
-                                let element = getCell(i, gen)
-                                element.style.setProperty('--color', '#333')
-                                element.className += ' alive'
-                            }
-                        } else {
-                            data[i] = 0
-                        }
-                    }
-                } else {
-                    for(let i = 0 - size; i < size * 2; i++){
-                        let a = previous[i - 1] || 0
-                        let b = previous[i]
-                        let c = previous[i + 1] || 0
 
-                        let neighbourhoodBinary = `${a}${b}${c}`
-                        let neighbourhoodId = parseInt(neighbourhoodBinary, 2)
+			let cells = []
+			for(let i = 0; i < rows.length; i++){
+				let row = {}
+				for(let x = 0 - rows.length * 2; x < rows.length * 3; x++){
+					if(i == 0){
+						if(rows[i][x] != null) row[x] = rows[i][x].hasClass('alive') ? 1 : 0
+						else row[x] = 0
+					} else {
+						let a = cells[i - 1][x - 1] || 0
+						let b = cells[i - 1][x + 0] || 0
+						let c = cells[i - 1][x + 1] || 0
+						const ruleId = parseInt(`${a}${b}${c}`, 2)
+						row[x] = rule[ruleId] ? 1 : 0
+					}
+				}
+				cells.push(row)
+			}
 
-                        if(rule[neighbourhoodId]){
-                            data[i] = 1
-                            if(getCell(i, gen)){
-                                let element = getCell(i, gen)
-                                element.style.setProperty('--color', colors[neighbourhoodId])
-                                element.className += ' alive'
-                            }
-                        } else {
-                            data[i] = 0
-                        }
-                    }
-                }
+			for(let i = 1; i < rows.length; i++){
 
-                if(gen < size) {
-                    setTimeout(() => {
-                        generation(gen + 1, data)
-                    }, Math.random() * 10)
-                }
-            }
+				for(let x = 0; x < size; x++){
 
-            generation(0, null)
+					const item = rows[i][x]
+					item.removeClass('alive')
 
-        }
+					let a = cells[i - 1][x - 1] || 0
+					let b = cells[i - 1][x + 0] || 0
+					let c = cells[i - 1][x + 1] || 0
+					const ruleId = parseInt(`${a}${b}${c}`, 2)
 
-        $(self).html(source)
+					if(cells[i][x]) item.addClass('alive').css('--color', colors[ruleId])
+
+					if(item == hovered){
+						item.addClass('highlight')
+						if(!rule[ruleId]) item.css('--highlight', colors[ruleId])
+						else item.css('--highlight', null)
+					}
+
+					item.off('mouseenter')
+					item.off('mouseleave')
+					item.off('click')
+
+					item.on('click', () => {
+						$(container).find('.rule-toggle').eq(ruleId).toggleClass('active')
+						render()
+					})
+
+                    item.on('mouseenter', () => {
+						hovered = item
+
+                        item.addClass('highlight')
+
+
+						if(!rule[ruleId]) item.css('--highlight', colors[ruleId])
+						else item.css('--highlight', null)
+                        if(rows[i - 1][x - 1]) rows[i - 1][x - 1].addClass('highlight')
+    					if(rows[i - 1][x + 0]) rows[i - 1][x + 0].addClass('highlight')
+    					if(rows[i - 1][x + 1]) rows[i - 1][x + 1].addClass('highlight')
+                        $(container).find('.button').css('opacity', 0.5).eq(ruleId).css('opacity', 1)
+                    })
+
+                    item.on('mouseleave', () => {
+						hovered = null
+						item.css('--highlight', null)
+                        $(container).find('.item').removeClass('highlight')
+                        $(container).find('.button').css('opacity', 1)
+                    })
+
+				}
+			}
+		}
 
         for(let i = 0; i < 8; i++){
-            const item = $(`<div class="button rule-toggle ${ (i < 5 && i != 0) ? "active" : "" }"></div>`)
+            const item = $(`<div class="button rule-toggle"></div>`)
             item.css('--color', colors[i])
             item.on('click', () => {
                 item.toggleClass('active')
                 render()
             })
-            $(self).find('.buttons').append(item)
+			if(i > 0 && i < 5) item.addClass('active')
+            $(self).find('.button-line').append(item)
         }
 
         let resetButton = $(`<div class="button">Reset</div>`)
@@ -124,55 +136,28 @@ $(() => {
             $(container).find('.rule-toggle').removeClass('active')
             render()
         })
-        $(self).find('.buttons').append(resetButton)
+        $(self).find('.button-line').append(resetButton)
 
-        for(let i = 0; i < size; i++) $(self).find('.array-grid').append('<div class="array"></div>')
+		for(let i = 0; i < size; i++){
 
-        $(self).find('.array').each((i, self) => {
-            for(let x = 0; x < size; x++){
-                const item = document.createElement('div')
-                item.className = 'item'
-                cells[`${x}-${i}`] = item
+			const list = $(`<div class='array'></div>`)
+			$(self).find('.arrays').append(list)
 
-                item.addEventListener('mouseenter', () => {
-                    if(getCell(x - 1, i - 1)) $(getCell(x - 1, i - 1)).addClass('highlight')
-                    if(getCell(x, i - 1)) $(getCell(x, i - 1)).addClass('highlight')
-                    if(getCell(x + 1, i - 1)) $(getCell(x + 1, i - 1)).addClass('highlight')
-                    $(item).addClass('highlight')
+			let row = []
+			rows.push(row)
+			for(let x = 0; x < size; x++){
+				const item = $(`<div class="item"></div>`)
+				if(i == 0){
+					if(x == Math.floor(size / 2)) item.addClass('alive')
+					item.on('mouseenter', () => item.addClass('highlight'))
+					item.on('mouseleave', () => item.removeClass('highlight'))
+				}
+				list.append(item)
+				row.push(item)
+			}
+		}
 
-                    let a = 0, b = 0, c = 0
-
-                    if(getCell(x - 1, i - 1) && $(getCell(x - 1, i - 1)).hasClass('alive')) a = 1
-                    if(getCell(x, i - 1) && $(getCell(x, i - 1)).hasClass('alive')) b = 1
-                    if(getCell(x + 1, i - 1) && $(getCell(x + 1, i - 1)).hasClass('alive')) c = 1
-
-                    let neighbourhoodBinary = `${a}${b}${c}`
-                    let neighbourhoodId = parseInt(neighbourhoodBinary, 2)
-
-                    $(container).find('.rule-toggle').each((i, self) => {
-                        if(i != neighbourhoodId) $(self).css('opacity', 0.5)
-                        else {
-                            $(item).on('click', () => {
-                                $(container).find('.rule-toggle').eq(neighbourhoodId).toggleClass('active')
-                                render()
-                            })
-                        }
-                    })
-                })
-
-                item.addEventListener('mouseleave', () => {
-                    if(getCell(x - 1, i - 1)) $(getCell(x - 1, i - 1)).removeClass('highlight')
-                    if(getCell(x, i - 1)) $(getCell(x, i - 1)).removeClass('highlight')
-                    if(getCell(x + 1, i - 1)) $(getCell(x + 1, i - 1)).removeClass('highlight')
-                    $(item).removeClass('highlight').off('click')
-                    $(container).find('.rule-toggle').css('opacity', 1)
-                })
-
-                $(self).append(item)
-            }
-        })
-
-        render()
+		render()
 
     })
 })

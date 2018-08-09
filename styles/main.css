@@ -107,7 +107,7 @@ input {
     display: block;
     margin: 10px 0px;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #fff;
     background: var(--color);
     transition: all 0.3s;
@@ -132,7 +132,7 @@ input {
 }
 
 .playable {
-    margin: 50px 0px;
+    margin: 100px 0px;
     padding: 10px 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 50px #ccc;
@@ -161,11 +161,12 @@ input {
     flex-grow: 1;
     background: #eee;
     transition: all 0.3s;
-    box-shadow: 0 0 0 1px transparent;
-    border: 2px solid transparent;
+    box-shadow: inset 0 0 0 1px transparent;
     border-radius: 5px;
+	border: 5px solid transparent;
     --color: #555;
     cursor: pointer;
+	--highlight: rgba(0, 0, 0, 0.5);
 }
 
 .array .item:before {
@@ -176,6 +177,7 @@ input {
 
 .array .item.alive {
     background: var(--color);
+	--highlight: rgba(255, 255, 255, 0.8);
 }
 
 .array .item:hover {
@@ -183,18 +185,13 @@ input {
 }
 
 .array .item.highlight {
-    box-shadow: 0 0 0 5px var(--primary);
-    z-index: 100;
+    box-shadow: inset 0 0 0 5px var(--highlight) !important;
 }
 
 .array-grid .item {
     margin: 1px !important;
     border-radius: 2px !important;
-    transition: none !important;
-}
 
-.array-grid .array .item.highlight {
-    box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .split-container {
@@ -202,4 +199,13 @@ input {
     width: 100%;
     grid-template-columns: 250px 1fr;
     grid-gap: 30px;
+}
+
+.puzzle-hint {
+	opacity: 0;
+	transition: all 1s;
+}
+
+p:hover > .puzzle-hint {
+	opacity: 1;
 }

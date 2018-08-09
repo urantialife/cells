@@ -9,6 +9,10 @@ $(() => {
         <p class="array"></p>
         <p>You Have: <span data-has></span></p>
         <p>You're still missing: <span data-missing></span></p>
+		<p>
+			Puzzle hint (hover to reveal):
+			<span class='puzzle-hint'>Remember that cells on the edge have dead neighbours we can't see!</span>
+		</p>
     `
 
     $('.playable.p4').each((i, self) => {

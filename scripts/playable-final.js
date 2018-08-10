@@ -40,7 +40,7 @@ $(() => {
 		let size = 15
 		let hovered = null
 
-		// TODO: Use negative x values so to outter cells
+		// TODO: Use negative x values so to outer cells
 
 		function render(){
 

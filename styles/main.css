@@ -56,7 +56,7 @@ header .credit {
 
 main {
     margin: 0 auto;
-    max-width: 55em;
+    max-width: 60em;
     line-height: 1.5;
     padding: 2em 2em;
 }
@@ -107,7 +107,7 @@ input {
     text-align: center;
     display: block;
     margin: 10px 0px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-radius: 5px;
     color: #fff;
     background: var(--color);
@@ -211,4 +211,37 @@ input {
 
 p:hover > .puzzle-hint {
 	opacity: 1;
+}
+
+.centered {
+	text-align: center;
+}
+
+.spread-container {
+	display: flex;
+	--item-gap: 10px;
+}
+
+
+.spread-container > * {
+	flex-grow: 1;
+	margin: 0;
+	vertical-align: top;
+}
+
+.spread-container *:last-child:not(:first-child){
+    margin-left: var(--item-gap);
+}
+
+.spread-container *:first-child:not(:last-child){
+    margin-right: var(--item-gap);
+}
+
+.spread-container *:not(:first-child):not(:last-child){
+    margin: 0px var(--item-gap);
+}
+
+table {
+	width: 100%;
+	font-size: inherit;
 }

@@ -17,7 +17,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/main.css?4">
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js'></script>
 
@@ -29,6 +29,7 @@
 		<script src='scripts/playable-6.js'></script>
 		<script src='scripts/playable-8.js'></script>
         <script src='scripts/playable-final.js'></script>
+		<script src='scripts/playable-rule-num.js?2'></script>
 
     </head>
 
@@ -156,12 +157,22 @@
 
             <div class="playable p-final"></div>
 
+			<p>
+				Each ECA has it's own "rule number", that encodes all of the outputs for each type of neighbourhood.
+				This means that you can describe the entire behaviour of an ECA with just this number!
+				The rule number can be found by converting the neighbourhood outputs to a binary number.
+				This is how the rule number is found:
+			</p>
+
+			<div class="playable p-rule-num">
+				<p>Interactive: Rule number from </p>
+			</div>
+
 			<p>TODO: The "systems" part!</p>
 			<ul>
-				<li>Rule numbers (binary!)</li>
 				<li>Classes of ECA</li>
 				<li>Show off some cool rules</li>
-				<li>Rule 30's randomness and rule 110's turing completeness</li>
+				<li>Rule 30's randomness and rule 110's Turing completeness</li>
 			</ul>
 
 			<h2>Conclusion</h2>

@@ -10,6 +10,9 @@ $(() => {
 		<p>
 			<div class='split-container'>
 				<div>
+					<p class='centered'>
+						Rule number: <span data-rule-number></span>
+					</p>
 					<div class='button-line'></div>
 				</div>
 				<div>
@@ -49,6 +52,8 @@ $(() => {
                 rule.push(producesLife)
                 $(self).html(`${neighbourText} ➜ ${producesLife ? '◼︎' : '◻︎'}`)
             })
+
+			$(container).find('[data-rule-number]').text(parseInt([...rule].reverse().map(x => x ? 1 : 0).join(''), 2))
 
 
 			let cells = []

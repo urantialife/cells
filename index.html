@@ -45,13 +45,14 @@
 
 			<h2>Introduction</h2>
 
+            <p>NOTE: Please use this site in landscape mode, portrait mode won't work properly!</p>
+
             <p>
-                Hi there, thanks for checking out this explorable thing!
-                Right now this page is early in development, so expect missing content, bugs, and spelling mistakes~
-                Note: Not designed for mobile, sorry, I'm working on it.
+                Hi there, thanks for checking out my first explorable thing!
+                This was made for a jam event during exams, so there might be a few spelling errors.
             </p>
 
-			<h2>The Elementary Cellular Automata</h2>
+			<h2>Part 1 : Cells</h2>
 
 			<p>So, you want to simulate a universe? Great! What is the simplest interesting universe we can create?</p>
 
@@ -168,12 +169,66 @@
 				<p>Interactive: Rule number from </p>
 			</div>
 
-			<p>TODO: The "systems" part!</p>
-			<ul>
-				<li>Classes of ECA</li>
-				<li>Show off some cool rules</li>
-				<li>Rule 30's randomness and rule 110's Turing completeness</li>
-			</ul>
+            <h2>Part 2 : Systems</h2>
+
+            <p>
+                Whilst researching the ECA, Stephen Wolfram came up with 4 different classes that can categorize them:
+            </p>
+            <ul>
+                <li>Class 1 - Uniformity</li>
+                <li>Class 2 - Repetition</li>
+                <li>Class 3 - Randomness</li>
+                <li>Class 4 - Complex</li>
+            </ul>
+
+            <p>
+                Let's see some examples of each of these, just like before you can edit each ECA,
+                clicking reset will restore it to the starting rule number so feel free to experiment!
+            </p>
+
+            <p>
+                Here's rule 223, it's an example of a class 1 ECA because all of the cells remain constantly alive:
+            </p>
+
+            <div class="playable p-final" data-rule='223'>
+                <p>Interactive: Rule number 223 </p>
+            </div>
+
+            <p>
+                Here's rule 196, it's a class 2 ECA because each cell toggles each generation in a pattern:
+            </p>
+
+            <div class="playable p-final" data-rule='186'>
+                <p>Interactive: Rule number 186 </p>
+            </div>
+
+             <p>
+                Here's rule 30, it's a class 3 ECA because the state of some cells is statistically random after
+                many generations (it's so random that it's used in random number generators):
+            </p>
+
+            <div class="playable p-final" data-rule='30'>
+                <p>Interactive: Rule number 30 </p>
+            </div>
+
+            <p>And here's a class 4, complex, ECA. It's rule 110:</p>
+
+            <div class="playable p-final" data-rule='110'>
+                <p>Interactive: Rule number 110 </p>
+            </div>
+
+			<p>
+                Let's talk about rule 110 for a minute, it's very special, it's <i>Turing complete</i>!
+                This is a computer science term that means "able to perform any computable operation".
+                Rule 110 might look a little different to a regular computer, but by encoding programs and data
+                as life and death on the first row of input cells and letting it run for long enough, it is able to
+                carry out any computation.
+            </p>
+
+            <p>
+                So, you now want to simulate a more complex universe?
+                Great! You can run that simulation on rule 110~ 😉
+            </p>
 
 			<h2>Conclusion</h2>
 

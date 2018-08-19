@@ -4,8 +4,7 @@
 $(() => {
     const source = `
 		<p>
-			Click the buttons to change the ECA,
-			you can also click the cells to toggle the button matching their neighbourhood in the previous generation:
+			HELPTEXT
 		</p>
 		<p>
 			<div class='split-container'>
@@ -33,7 +32,17 @@ $(() => {
 
     $('.playable.p-final').each((i, self) => {
 
-		$(self).html(source)
+    	let defaultHelp = 'Click the buttons to change the ECA, you can also click the cells to toggle the button matching their neighbourhood in the previous generation:'
+
+    	let startRule = 219
+    	if($(self).attr('data-rule')){
+    		defaultHelp = 'This ECA starts as rule ' + $(self).attr('data-rule') + ' but you can edit it'
+    		startRule = parseInt($(self).attr('data-rule'))
+    	}
+
+    	const mySource = source.replace('HELPTEXT', defaultHelp)
+
+		$(self).html(mySource)
 
 		const container = self, rows = []
 
@@ -41,6 +50,15 @@ $(() => {
 		let hovered = null
 
 		// TODO: Use negative x values so to outer cells
+
+		function setRule(number){
+			const ruleBinary = toBinary(number)
+			$(container).find('.rule-toggle').each((i, self) => {
+				$(self).removeClass('active')
+				if(ruleBinary[7-i] == '1') $(self).addClass('active')
+			})
+			render()
+		}
 
 		function render(){
 
@@ -135,15 +153,13 @@ $(() => {
                 item.toggleClass('active')
                 render()
             })
-			if(i > 0 && i < 5) item.addClass('active')
             $(self).find('.button-line').append(item)
         }
 
         let resetButton = $(`<div class="button">Reset</div>`)
         resetButton.css({'--color': '#eee', color: '#333'})
         resetButton.on('click', () => {
-            $(container).find('.rule-toggle').removeClass('active')
-            render()
+            setRule(startRule)
         })
         $(self).find('.button-line').append(resetButton)
 
@@ -165,6 +181,8 @@ $(() => {
 				row.push(item)
 			}
 		}
+
+		setRule(startRule)
 
 		render()
 
